@@ -8,10 +8,9 @@
 fun ReplaceWithRegister(type, ...)
     "Set delete register, throw out if not defined
     if exists("g:RePaste_DeleteRegister")
-       \ && strlen("g:RePaste_DeleteRegister") == 1 "Safety check
-        let a:reg = g:RePaste_DeleteRegister
+        let l:reg = g:RePaste_DeleteRegister
     else
-        let a:reg = "_"
+        let l:reg = "_"
     endif
 
     if a:0 "Visual
@@ -23,7 +22,7 @@ fun ReplaceWithRegister(type, ...)
     else
         let l:select = "`[v`]"
     endif
-    sil exe "norm! " . l:select . '"' . a:reg . 'dP'
+    sil exe "norm! " . l:select . '"' . l:reg . 'dP'
 endfun
 
 nmap <silent> <leader>r :set opfunc=ReplaceWithRegister<CR>g@
